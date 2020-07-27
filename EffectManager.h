@@ -60,20 +60,23 @@ class EffectManager
 		CUTOFF,        
     } OverflowCode;
     
-    EffectManager(CRGB* leds, uint8_t num_leds) 
+    EffectManager(CRGB* leds, uint8_t num_leds, bool save_effect = false) 
         : leds_(leds, num_leds), 
 		  NUM_LEDS_(num_leds), 
 		  effect_(EFFECT_OFF), 
           last_effect_eeprom_(EFFECT_OFF),
 		  counter_(),
-          rainbow_counter_() {
+          rainbow_counter_(),
+          save_effect_flag_(save_effect) 
+    {
+        if(save_effect)
+        {
+            loadEffectEeprom();
+        }
     };
 	
 	void runEffect(Effect effect);
 
-    void loadEffectEeprom();
-
-	void saveEffectEeprom();
 
 
  private:
@@ -94,7 +97,13 @@ class EffectManager
 
     CRGB color_;
 
+    bool save_effect_flag_;
+
     static const uint16_t COUNT_MAX_RAINBOW_ = 255;
+
+    void loadEffectEeprom();
+
+	void saveEffectEeprom();
     
     void initCounterSolid();
 

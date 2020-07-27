@@ -9,12 +9,17 @@ void EffectManager::runEffect(Effect effect)
     //If the new effect is different from the current effect, set flag
     bool effect_switch = !(effect_ == effect);
 
-    switch(effect)
+    if(effect_switch)
+    {
+        effect_ = effect;
+        saveEffectEeprom();
+    }
+
+    switch(effect_)
     {
         case EFFECT_OFF:
             if(effect_switch)
             {
-                effect_ = effect;
                 color_ = CRGB::Black;
                 ledsFillSolid(CRGB::Black);
                 initCounterSolid();
@@ -24,7 +29,6 @@ void EffectManager::runEffect(Effect effect)
         case EFFECT_SOLID_RED:
             if(effect_switch)
             {
-                effect_ = effect;
                 color_ = CRGB::Red;
                 ledsFillSolid(CRGB::Red);
                 initCounterSolid();
@@ -34,7 +38,6 @@ void EffectManager::runEffect(Effect effect)
         case EFFECT_SOLID_GREEN:
             if(effect_switch)
             {
-                effect_ = effect;
                 color_ = CRGB::Green;
                 ledsFillSolid(CRGB::Green);
                 initCounterSolid();
@@ -44,7 +47,6 @@ void EffectManager::runEffect(Effect effect)
         case EFFECT_SOLID_BLUE:
             if(effect_switch)
             {
-                effect_ = effect;
                 color_ = CRGB::Blue;
                 ledsFillSolid(CRGB::Blue);
                 initCounterSolid();
@@ -54,7 +56,6 @@ void EffectManager::runEffect(Effect effect)
         case EFFECT_SOLID_CYAN:
             if(effect_switch)
             {
-                effect_ = effect;
                 color_ = CRGB::Cyan;
                 ledsFillSolid(CRGB::Cyan);
                 initCounterSolid();
@@ -64,7 +65,6 @@ void EffectManager::runEffect(Effect effect)
         case EFFECT_SOLID_MAGENTA:
             if(effect_switch)
             {
-                effect_ = effect;
                 color_ = CRGB::Magenta;
                 ledsFillSolid(CRGB::Magenta);
                 initCounterSolid();
@@ -74,7 +74,6 @@ void EffectManager::runEffect(Effect effect)
         case EFFECT_SOLID_YELLOW:
             if(effect_switch)
             {
-                effect_ = effect;
                 color_ = CRGB::Yellow;
                 ledsFillSolid(CRGB::Yellow);
                 initCounterSolid();
@@ -84,7 +83,6 @@ void EffectManager::runEffect(Effect effect)
         case EFFECT_RAINBOW_FILL_SLOW:
             if(effect_switch)
             {
-                effect_ = effect;
                 initCounterRainbowSlow();
             }
             //Fill the strip with rainbow with a delta of 0 to make it solid
@@ -94,7 +92,6 @@ void EffectManager::runEffect(Effect effect)
         case EFFECT_RAINBOW_FILL_FAST:
             if(effect_switch)
             {
-                effect_ = effect;
                 initCounterRainbowFast();
             }
             //Fill the strip with rainbow with a delta of 0 to make it solid
@@ -104,7 +101,6 @@ void EffectManager::runEffect(Effect effect)
         case EFFECT_RAINBOW_FADE_SLOW:
             if(effect_switch)
             {
-                effect_ = effect;
                 initCounterRainbowSlow();
             }
             //Fill rainbow with a delta of 5 to make it fade throughout
@@ -114,7 +110,6 @@ void EffectManager::runEffect(Effect effect)
         case EFFECT_RAINBOW_FADE_FAST:
             if(effect_switch)
             {
-                effect_ = effect;
                 initCounterRainbowFast();
             }
             //Fill rainbow with a delta of 5 to make it fade throughout
@@ -125,7 +120,6 @@ void EffectManager::runEffect(Effect effect)
         {
             if(effect_switch)
             {
-                effect_ = effect;
                 initCounterRainbowSlow();
             }
             //Fill rainbow with a delta that makes the rainbow evenly spread throughout
@@ -140,7 +134,6 @@ void EffectManager::runEffect(Effect effect)
         {
             if(effect_switch)
             {
-                effect_ = effect;
                 initCounterRainbowFast();
             }
             //Fill rainbow with a delta that makes the rainbow evenly spread throughout
@@ -155,7 +148,6 @@ void EffectManager::runEffect(Effect effect)
         {
             if(effect_switch)
             {
-                effect_ = effect;
                 initCounterTheatreChaseSlow();
             }
             
@@ -167,7 +159,6 @@ void EffectManager::runEffect(Effect effect)
         {
             if(effect_switch)
             {
-                effect_ = effect;
                 initCounterTheatreChaseFast();
             }
             
@@ -179,7 +170,6 @@ void EffectManager::runEffect(Effect effect)
         {
             if(effect_switch)
             {
-                effect_ = effect;
                 initCounterTheatreChaseSlow();
             }
             
@@ -191,7 +181,6 @@ void EffectManager::runEffect(Effect effect)
         {
             if(effect_switch)
             {
-                effect_ = effect;
                 initCounterTheatreChaseFast();
             }
             
@@ -203,7 +192,6 @@ void EffectManager::runEffect(Effect effect)
         {
             if(effect_switch)
             {
-                effect_ = effect;
                 initCounterTheatreChaseSlow();
             }
             
@@ -215,7 +203,6 @@ void EffectManager::runEffect(Effect effect)
         {
             if(effect_switch)
             {
-                effect_ = effect;
                 initCounterTheatreChaseFast();
             }
             
@@ -227,7 +214,6 @@ void EffectManager::runEffect(Effect effect)
         {
             if(effect_switch)
             {
-                effect_ = effect;
                 initCounterTheatreChaseSlow();
             }
             
@@ -239,7 +225,6 @@ void EffectManager::runEffect(Effect effect)
         {
             if(effect_switch)
             {
-                effect_ = effect;
                 initCounterTheatreChaseFast();
             }
             
@@ -251,7 +236,6 @@ void EffectManager::runEffect(Effect effect)
         {
             if(effect_switch)
             {
-                effect_ = effect;
                 initCounterTheatreChaseSlow();
             }
             
@@ -263,7 +247,6 @@ void EffectManager::runEffect(Effect effect)
         {
             if(effect_switch)
             {
-                effect_ = effect;
                 initCounterTheatreChaseFast();
             }
             
@@ -275,7 +258,6 @@ void EffectManager::runEffect(Effect effect)
         {
             if(effect_switch)
             {
-                effect_ = effect;
                 initCounterTheatreChaseSlow();
             }
             
@@ -287,7 +269,6 @@ void EffectManager::runEffect(Effect effect)
         {
             if(effect_switch)
             {
-                effect_ = effect;
                 initCounterTheatreChaseFast();
             }
             
@@ -299,7 +280,6 @@ void EffectManager::runEffect(Effect effect)
         {
             if(effect_switch)
             {
-                effect_ = effect;
                 initCounterTheatreChaseSlow();
                 initCounterRainbowSlow();
             }
@@ -313,7 +293,6 @@ void EffectManager::runEffect(Effect effect)
         {
             if(effect_switch)
             {
-                effect_ = effect;
                 initCounterTheatreChaseFast();
                 initCounterRainbowFast();
             }
@@ -326,7 +305,6 @@ void EffectManager::runEffect(Effect effect)
         case EFFECT_THEATRE_CHASE_RAINBOW_FADE_SLOW:
             if(effect_switch)
             {
-                effect_ = effect;
                 initCounterTheatreChaseSlow();
                 initCounterRainbowSlow();
             }
@@ -338,7 +316,6 @@ void EffectManager::runEffect(Effect effect)
         case EFFECT_THEATRE_CHASE_RAINBOW_FADE_FAST:
             if(effect_switch)
             {
-                effect_ = effect;
                 initCounterTheatreChaseFast();
                 initCounterRainbowFast();
             }
@@ -351,7 +328,6 @@ void EffectManager::runEffect(Effect effect)
         {
             if(effect_switch)
             {
-                effect_ = effect;
                 initCounterTheatreChaseSlow();
                 initCounterRainbowSlow();
             }
@@ -368,7 +344,6 @@ void EffectManager::runEffect(Effect effect)
         {
             if(effect_switch)
             {
-                effect_ = effect;
                 initCounterTheatreChaseFast();
                 initCounterRainbowFast();
             }
@@ -392,6 +367,8 @@ void EffectManager::loadEffectEeprom()
     {
         last_effect_eeprom_ = EFFECT_OFF;
     }
+
+    effect_ = last_effect_eeprom_;
 }
 
 
