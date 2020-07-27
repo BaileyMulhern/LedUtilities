@@ -1,3 +1,8 @@
+#ifndef EEPROM_ADDRESS_H
+#define EEPROM_ADDRESS_H
+
+#include <Arduino.h>
+#include <EEPROM.h>
 
 typedef enum 
 {
@@ -5,3 +10,5 @@ typedef enum
     EEPROM_COLOR
     
 } EepromAddress;
+
+#endif //EEPROM_ADDRESS_H

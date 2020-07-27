@@ -4,6 +4,7 @@
 #include <Arduino.h>
 #include <FastLED.h>
 #include "Counter.h"
+#include "EepromAddress.h"
 
 class EffectManager 
 {
@@ -63,11 +64,17 @@ class EffectManager
         : leds_(leds, num_leds), 
 		  NUM_LEDS_(num_leds), 
 		  effect_(EFFECT_OFF), 
+          last_effect_eeprom_(EFFECT_OFF),
 		  counter_(),
           rainbow_counter_() {
     };
 	
 	void runEffect(Effect effect);
+
+    void loadEffectEeprom();
+
+	void saveEffectEeprom();
+
 
  private:
 
@@ -76,6 +83,8 @@ class EffectManager
     const uint8_t NUM_LEDS_;
 
 	Effect effect_;
+
+    Effect last_effect_eeprom_;
 
 	//effectFunc_t effect_func_;
 

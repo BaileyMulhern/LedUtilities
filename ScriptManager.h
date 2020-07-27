@@ -40,10 +40,6 @@ class ScriptManager
 
 	void resetScript();
 
-	void loadScriptEeprom();
-
-	void saveScriptEeprom();
-
 
  private:
 

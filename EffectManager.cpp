@@ -1,8 +1,5 @@
 #include "EffectManager.h"
 
-#include <FastLED.h>
-
-
 void EffectManager::runEffect(Effect effect)
 {
 	//Tick the effect timer	
@@ -383,6 +380,27 @@ void EffectManager::runEffect(Effect effect)
             ledsFillAlternating(3, counter_.getCount());
             break;
         }
+    }
+}
+
+
+void EffectManager::loadEffectEeprom()
+{
+    last_effect_eeprom_ = EEPROM.read(EepromAddress::EEPROM_EFFECT);
+
+    if(last_effect_eeprom_ < 0 || last_effect_eeprom_ >= Effect::EFFECT_NUM_EFFECTS)
+    {
+        last_effect_eeprom_ = EFFECT_OFF;
+    }
+}
+
+
+void EffectManager::saveEffectEeprom()
+{
+    if(effect_ != last_effect_eeprom_)
+    {
+        last_effect_eeprom_ = effect_;
+        EEPROM.write(EepromAddress::EEPROM_EFFECT, last_effect_eeprom_);
     }
 }
 
