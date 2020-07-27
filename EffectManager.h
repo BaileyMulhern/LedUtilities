@@ -1,6 +1,7 @@
 #ifndef EFFECT_MANAGER_H
 #define EFFECT_MANAGER_H
 
+#include <Arduino.h>
 #include <FastLED.h>
 #include "Counter.h"
 

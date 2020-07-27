@@ -1,9 +1,10 @@
 #ifndef SCRIPT_MANAGER_H
 #define SCRIPT_MANAGER_H
 
+#include <Arduino.h>
+#include <FastLED.h>
 #include "EffectManager.h"
 #include "Counter.h"
-#include <FastLED.h>
 
 
 class ScriptManager 
@@ -38,6 +39,10 @@ class ScriptManager
 	void runScript();
 
 	void resetScript();
+
+	void loadScriptEeprom();
+
+	void saveScriptEeprom();
 
 
  private:
