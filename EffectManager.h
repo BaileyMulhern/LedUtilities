@@ -4,7 +4,6 @@
 #include <Arduino.h>
 #include <FastLED.h>
 #include "Counter.h"
-#include "EepromAddress.h"
 
 class EffectManager 
 {
@@ -60,19 +59,13 @@ class EffectManager
 		CUTOFF,        
     } OverflowCode;
     
-    EffectManager(CRGB* leds, uint8_t num_leds, bool save_effect = false) 
+    EffectManager(CRGB* leds, uint8_t num_leds) 
         : leds_(leds, num_leds), 
 		  NUM_LEDS_(num_leds), 
 		  effect_(EFFECT_OFF), 
-          last_effect_eeprom_(EFFECT_OFF),
 		  counter_(),
-          rainbow_counter_(),
-          save_effect_flag_(save_effect) 
+          rainbow_counter_()
     {
-        if(save_effect)
-        {
-            loadEffectEeprom();
-        }
     };
 	
 	void runEffect(Effect effect);
@@ -87,8 +80,6 @@ class EffectManager
 
 	Effect effect_;
 
-    Effect last_effect_eeprom_;
-
 	//effectFunc_t effect_func_;
 
     Counter counter_;
@@ -97,13 +88,7 @@ class EffectManager
 
     CRGB color_;
 
-    bool save_effect_flag_;
-
     static const uint16_t COUNT_MAX_RAINBOW_ = 255;
-
-    void loadEffectEeprom();
-
-	void saveEffectEeprom();
     
     void initCounterSolid();
 
