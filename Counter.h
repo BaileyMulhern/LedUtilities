@@ -4,12 +4,20 @@
 #include <stdint.h>
 #include <Arduino.h>
 
-#define NO_WAIT		0
-
+/** @class Counter
+ *  @brief Simple counter that increments at preset intervals
+ * 
+ * 	By calling tic() every update, the counter will increment by the step size every
+ * 	interval as given by the prescaler value. Using a value of NO_WAIT will increment 
+ * 	the timer upon every call of tic().
+ *
+ */
 class Counter
 {
 
  public:
+
+	static const uint8_t  NO_WAIT =								0;
 
 	static const uint64_t PRESCALER_ONE_MILLISECOND = 			1;
 	static const uint64_t PRESCALER_ONE_TWENTIETH_SECOND = 		50;
