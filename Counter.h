@@ -33,16 +33,25 @@ class Counter
 	static const uint64_t PRESCALER_ONE_HOUR = 					3600000;
 
 	
-	//Default constructor
+	/**
+	 * Default Counter Constructor
+	 * Sets the counter to a single increment counter that will increment each
+	 * call of tic()
+	 */
 	Counter() 
 		: count_(0), 
-		  step_(0), 
-		  max_(0), 
+		  step_(1), 
+		  max_(1), 
 		  overflow_(0), 
 		  prescaler_(0),
 		  last_ms_(millis()) {
 	};
 
+	/**
+	 * Counter Constructor
+	 * Sets the counter to the default counter with the given delay time
+	 * @param prescaler delay between each increment of the counter in milliseconds
+	 */
 	Counter(uint64_t prescaler) 
 		: count_(0), 
 		  step_(1), 
