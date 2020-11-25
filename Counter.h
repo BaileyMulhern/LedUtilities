@@ -17,56 +17,55 @@ class Counter
 
  public:
 
-	static const uint8_t  NO_WAIT =								0;
-
-	static const uint64_t PRESCALER_ONE_MILLISECOND = 			1;
-	static const uint64_t PRESCALER_ONE_TWENTIETH_SECOND = 		50;
-	static const uint64_t PRESCALER_ONE_TENTH_SECOND = 			100;
-	static const uint64_t PRESCALER_QUARTER_SECOND = 			250;
-	static const uint64_t PRESCALER_HALF_SECOND = 				500;
-	static const uint64_t PRESCALER_THREE_QUARTER_SECOND = 		750;
-	static const uint64_t PRESCALER_ONE_SECOND = 				1000;
-	static const uint64_t PRESCALER_TEN_SECONDS =				10000;
-	static const uint64_t PRESCALER_THIRTY_SECONDS =			30000;
-	static const uint64_t PRESCALER_ONE_MINUTE = 				60000;
-	static const uint64_t PRESCALER_FIVE_MINUTES =				300000;
-	static const uint64_t PRESCALER_ONE_HOUR = 					3600000;
+	static const uint8_t  WAIT_NONE =					0;
+	static const uint64_t WAIT_ONE_MILLISECOND = 		1;
+	static const uint64_t WAIT_ONE_TWENTIETH_SECOND = 	50;
+	static const uint64_t WAIT_ONE_TENTH_SECOND = 		100;
+	static const uint64_t WAIT_QUARTER_SECOND = 		250;
+	static const uint64_t WAIT_HALF_SECOND = 			500;
+	static const uint64_t WAIT_THREE_QUARTER_SECOND = 	750;
+	static const uint64_t WAIT_ONE_SECOND = 			1000;
+	static const uint64_t WAIT_TEN_SECONDS =			10000;
+	static const uint64_t WAIT_THIRTY_SECONDS =			30000;
+	static const uint64_t WAIT_ONE_MINUTE = 			60000;
+	static const uint64_t WAIT_FIVE_MINUTES =			300000;
+	static const uint64_t WAIT_ONE_HOUR = 				3600000;
 
 	
 	/**
 	 * Default Counter Constructor
 	 * Sets the counter to a single increment counter that will increment each
-	 * call of tic()
+	 * call of update()
 	 */
 	Counter() 
 		: count_(0), 
 		  step_(1), 
 		  max_(1), 
 		  overflow_(0), 
-		  prescaler_(0),
+		  wait_(WAIT_NONE),
 		  last_ms_(millis()) {
 	};
 
 	/**
 	 * Counter Constructor
 	 * Sets the counter to the default counter with the given delay time
-	 * @param prescaler delay between each increment of the counter in milliseconds
+	 * @param wait delay in milliseconds between each increment/decrement of the counter
 	 */
-	Counter(uint64_t prescaler) 
+	Counter(uint64_t wait) 
 		: count_(0), 
 		  step_(1), 
 		  max_(1), 
 		  overflow_(0), 
-		  prescaler_(prescaler),
+		  wait_(wait)
 		  last_ms_(millis()) {
 	};
 
-	Counter(uint32_t count, uint32_t step, uint32_t max, uint32_t overflow, uint64_t prescaler)
+	Counter(uint32_t count, uint32_t step, uint32_t max, uint32_t overflow, uint64_t wait)
 		: count_(count), 
 		  step_(step), 
 		  max_(max), 
 		  overflow_(overflow), 
-		  prescaler_(prescaler),
+		  wait_(wait),
 		  last_ms_(millis()) {
 	};
 	
@@ -81,13 +80,13 @@ class Counter
 	
 	uint32_t getOverflow() { return overflow_; };
 
-	uint64_t getPrescaler() { return prescaler_; };
+	uint64_t getWait() { return wait_; };
 
-	void setPrescaler(uint64_t prescaler) { prescaler_ = prescaler; };
+	void setWait(uint64_t wait) { wait_ = wait; };
 	
 	void reset();
 	
-	bool tic();
+	bool update();
   	
  private:
 	
@@ -99,7 +98,7 @@ class Counter
 	
 	uint32_t overflow_;
 
-	uint64_t prescaler_;
+	uint64_t wait_;
 	
 	uint64_t last_ms_;
 

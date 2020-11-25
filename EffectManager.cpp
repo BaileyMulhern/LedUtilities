@@ -3,8 +3,8 @@
 void EffectManager::runEffect(Effect effect)
 {
 	//Tick the effect timer	
-    counter_.tic();
-    rainbow_counter_.tic();
+    counter_.update();
+    rainbow_counter_.update();
 
     //If the new effect is different from the current effect, set flag
     bool effect_switch = !(effect_ == effect);
@@ -366,25 +366,25 @@ void EffectManager::initCounterSolid()
 
 void EffectManager::initCounterRainbowSlow()
 {
-    rainbow_counter_ = Counter(0,1,COUNT_MAX_RAINBOW_,0,Counter::PRESCALER_QUARTER_SECOND);
+    rainbow_counter_ = Counter(0,1,COUNT_MAX_RAINBOW_,0,Counter::WAIT_QUARTER_SECOND);
 }
 
 
 void EffectManager::initCounterRainbowFast()
 {
-    rainbow_counter_ = Counter(0,1,COUNT_MAX_RAINBOW_,0,Counter::PRESCALER_ONE_TWENTIETH_SECOND);
+    rainbow_counter_ = Counter(0,1,COUNT_MAX_RAINBOW_,0,Counter::WAIT_ONE_TWENTIETH_SECOND);
 }
 
 
 void EffectManager::initCounterTheatreChaseSlow()
 {
-    counter_ = Counter(0,1,3,0,Counter::PRESCALER_QUARTER_SECOND);
+    counter_ = Counter(0,1,3,0,Counter::WAIT_QUARTER_SECOND);
 }
 
 
 void EffectManager::initCounterTheatreChaseFast()
 {
-    counter_ = Counter(0,1,3,0,Counter::PRESCALER_ONE_TWENTIETH_SECOND);
+    counter_ = Counter(0,1,3,0,Counter::WAIT_ONE_TWENTIETH_SECOND);
 }
 
 
