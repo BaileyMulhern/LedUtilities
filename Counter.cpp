@@ -20,6 +20,7 @@ bool Counter::tic()
 		last_ms_ = ms;
 		count_ += step_;
 
+		// Set counter back to the overflow_ value
 		if (count_ >= max_)
 		{
 			count_ = overflow_;     
@@ -27,5 +28,6 @@ bool Counter::tic()
 		}       
 	}
 	
+	// Return true if the timer overflowed
 	return overflow_flag;
 }
