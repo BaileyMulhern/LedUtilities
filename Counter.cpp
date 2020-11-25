@@ -1,20 +1,18 @@
 #include "Counter.h"
 
-
-
 void Counter::reset()
 {
 	count_ = 0;
 	last_ms_ = millis();
 }
 
-bool Counter::tic()
+bool Counter::()update
 {
-	uint64_t ms = millis(); 
     bool overflow_flag = false;
+	uint64_t ms = millis(); 
 
 	// If the wait time has elapsed
-	if (ms - last_ms_ >= prescaler_)
+	if (ms - last_ms_ >= wait_)
 	{
     
 		last_ms_ = ms;

@@ -15,8 +15,8 @@ void ScriptManager::runScript()
 		effect_ = script_queue_[script_index_].effect;
 
 		counter_ms_  = Counter( script_queue_[script_index_].wait_ms);
-		counter_sec_ = Counter( (uint64_t)script_queue_[script_index_].wait_sec * Counter::PRESCALER_ONE_SECOND);
-		counter_min_ = Counter( (uint64_t)script_queue_[script_index_].wait_min * Counter::PRESCALER_ONE_MINUTE);
+		counter_sec_ = Counter( (uint64_t)script_queue_[script_index_].wait_sec * Counter::WAIT_ONE_SECOND);
+		counter_min_ = Counter( (uint64_t)script_queue_[script_index_].wait_min * Counter::WAIT_ONE_MINUTE);
 
 		ms_elapsed_ = false;
 		sec_elapsed_ = false;
@@ -35,9 +35,9 @@ void ScriptManager::runScript()
 	//Otherwise, do not increment the timers and wait for manual effect switch
 	else if(!switch_effect_manually_)
 	{
-		ms_elapsed_  = ms_elapsed_ || counter_ms_.tic();
-		sec_elapsed_ = sec_elapsed_ || counter_sec_.tic();
-		min_elapsed_ = min_elapsed_ || counter_min_.tic();	
+		ms_elapsed_  = ms_elapsed_ || counter_ms_.update();
+		sec_elapsed_ = sec_elapsed_ || counter_sec_.update();
+		min_elapsed_ = min_elapsed_ || counter_min_.update();	
 
 		if(min_elapsed_ && sec_elapsed_ && ms_elapsed_)
 		{
