@@ -32,11 +32,11 @@ the individual effects.
 CRGB leds[NUM_LEDS];
 
 ScriptManager::ScriptElement script[] = {
-    /*		EFFECT		   		    WAIT TIME		MANUAL */
-    /*		 NAME				MIN 	SEC 	MS	SWITCH */		
-    {EffectManager::EFFECT_SOLID_RED, 		0, 	5, 	0,	false},
-    {EffectManager::EFFECT_SOLID_GREEN,		0, 	5, 	0,	false},
-    {EffectManager::EFFECT_SOLID_BLUE,		0, 	5, 	0,	false},
+    /*			EFFECT	   		    			WAIT TIME	MANUAL */
+    /*		 	NAME						   MIN SEC MS	SWITCH */		
+    {EffectManager::EFFECT_SOLID_RED, 			0, 	5, 	0,	false},
+    {EffectManager::EFFECT_SOLID_GREEN,			0, 	5, 	0,	false},
+    {EffectManager::EFFECT_SOLID_BLUE,			0, 	5, 	0,	false},
     {EffectManager::EFFECT_RAINBOW_FILL_FAST,	0, 	5,	0,	false},
     /* INSERT ADDITIONAL EFFECTS HERE */
 };
@@ -70,3 +70,10 @@ void loop(void)
 ## Installation
 
 The LedUtilities library can be installed by downloading the repository and placing it within your Arduino project folder. Within your Arduino project, it should be placed in a subfolder named `src` then included in the code using `#include src/LedUtilities` at the top of your .ino file.
+
+## TO-DO
+
+[ ] Provide detailed list of preset effects in README
+[ ] Finish adding Doxygen comments throughout project
+[ ] Create repository wiki
+
