@@ -32,36 +32,36 @@ the individual effects.
 CRGB leds[NUM_LEDS];
 
 ScriptManager::ScriptElement script[] = {
-	/*			EFFECT							   WAIT TIME		MANUAL */
-	/*			 NAME							   MIN SEC MS		SWITCH */		
-    {EffectManager::EFFECT_SOLID_RED, 				0, 	5, 	0,		false},
-    {EffectManager::EFFECT_SOLID_GREEN,				0, 	5, 	0,		false},
-	{EffectManager::EFFECT_SOLID_BLUE,				0, 	5, 	0,		false},
-    {EffectManager::EFFECT_RAINBOW_FILL_FAST,		0, 	5,	0,		false},
-	/* INSERT ADDITIONAL EFFECTS HERE */
+    /*		EFFECT		   		    WAIT TIME		MANUAL */
+    /*		 NAME				MIN 	SEC 	MS	SWITCH */		
+    {EffectManager::EFFECT_SOLID_RED, 		0, 	5, 	0,	false},
+    {EffectManager::EFFECT_SOLID_GREEN,		0, 	5, 	0,	false},
+    {EffectManager::EFFECT_SOLID_BLUE,		0, 	5, 	0,	false},
+    {EffectManager::EFFECT_RAINBOW_FILL_FAST,	0, 	5,	0,	false},
+    /* INSERT ADDITIONAL EFFECTS HERE */
 };
 ScriptManager scriptManager(leds, NUM_LEDS);
 
 void setup(void)
 {
-	/* Pin Setup */
+    /* Pin Setup */
     pinMode(LED_PIN, OUTPUT);
-	/* FastLED Setup */
+    /* FastLED Setup */
     FastLED.addLeds<NEOPIXEL, LED_PIN>(leds, NUM_LEDS);
     FastLED.setBrightness(BRIGHTNESS);
-	/* Load Preset Script into ScriptManager*/
+    /* Load Preset Script into ScriptManager*/
     scriptManager.loadScript(script);
 }
 
 void loop(void)
 {
-	/*
-	 * INSERT ADDITIONAL CODE HERE
-	 */
-
-	/* Continuously Update Effect */
+    /*
+     * INSERT ADDITIONAL CODE HERE
+     */
+	 
+    /* Continuously Update Effect */
     scriptManager.runScript();
-	/* Display LED strip */
+    /* Display LED strip */
     FastLED.show();
 }
 
