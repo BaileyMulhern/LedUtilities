@@ -60,6 +60,15 @@ class Counter
 		  last_ms_(millis()) {
 	};
 
+	/**
+	 * Counter Constructor
+	 * Sets the counter to the given parameters
+	 * @param count 	intial value of the Counter
+	 * @param step 		the value by which to increment/decrement the counter
+	 * @param max		value at which the counter which overflow once reached
+	 * @param overflow	value taken by the counter once it reaches max and overflows
+	 * @param wait 		delay in milliseconds between each increment/decrement of the counter
+	 */
 	Counter(uint32_t count, uint32_t step, uint32_t max, uint32_t overflow, uint64_t wait)
 		: count_(count), 
 		  step_(step), 
@@ -69,9 +78,17 @@ class Counter
 		  last_ms_(millis()) {
 	};
 	
+	/**
+	 * Counter Deconstructor
+	 * Destroys the Counter object
+	 */
 	~Counter() {
 	};
 	
+	/**
+	 * Get method for count_
+	 * @return 
+	 */
 	uint32_t getCount() { return count_; };
 	
 	uint32_t getStep() { return step_; };
