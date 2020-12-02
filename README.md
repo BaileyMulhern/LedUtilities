@@ -73,7 +73,7 @@ The LedUtilities library can be installed by downloading the repository and plac
 
 ## TO-DO
 
-[ ] Provide detailed list of preset effects in README
-[ ] Finish adding Doxygen comments throughout project
-[ ] Create repository wiki
+- [ ] Provide detailed list of preset effects in README
+- [ ] Finish adding Doxygen comments throughout project
+- [ ] Create repository wiki
 
