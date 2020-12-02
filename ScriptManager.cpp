@@ -1,9 +1,9 @@
 #include "ScriptManager.h"
 
-void ScriptManager::loadScript(ScriptElement *script, uint8_t script_length)
+void ScriptManager::loadScript(ScriptElement *script)
 {
 	script_queue_ = script;
-	script_length_ = script_length;
+	script_length_ = sizeof(script) / sizeof(ScriptElement);
 	script_index_ = 0;
 	effect_switch_ = true;
 }
