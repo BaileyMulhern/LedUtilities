@@ -10,8 +10,6 @@ class EffectManager
 
  public:
 
-	typedef void (*effectFunc_t)(void);
-
     typedef enum
     {
         EFFECT_OFF = 0,
@@ -46,7 +44,7 @@ class EffectManager
         EFFECT_THEATRE_CHASE_RAINBOW_EVEN_SLOW,
         EFFECT_THEATRE_CHASE_RAINBOW_EVEN_FAST,
         EFFECT_NUM_EFFECTS,
-    } Effect;
+    } EffectName;
 
     typedef enum {
 		FORWARD,
@@ -68,7 +66,7 @@ class EffectManager
     {
     };
 	
-	void runEffect(Effect effect);
+	void runEffect(EffectName effect);
 
 
 
@@ -78,7 +76,7 @@ class EffectManager
     
     const uint8_t NUM_LEDS_;
 
-	Effect effect_;
+	EffectName effect_;
 
 	//effectFunc_t effect_func_;
 

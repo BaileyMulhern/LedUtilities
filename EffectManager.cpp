@@ -1,6 +1,6 @@
 #include "EffectManager.h"
 
-void EffectManager::runEffect(Effect effect)
+void EffectManager::runEffect(EffectName effect)
 {
 	//Tick the effect timer	
     counter_.update();

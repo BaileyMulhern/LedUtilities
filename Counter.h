@@ -56,7 +56,7 @@ class Counter
 		  step_(1), 
 		  max_(1), 
 		  overflow_(0), 
-		  wait_(wait)
+		  wait_(wait),
 		  last_ms_(millis()) {
 	};
 

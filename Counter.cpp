@@ -6,7 +6,7 @@ void Counter::reset()
 	last_ms_ = millis();
 }
 
-bool Counter::()update
+bool Counter::update()
 {
     bool overflow_flag = false;
 	uint64_t ms = millis(); 

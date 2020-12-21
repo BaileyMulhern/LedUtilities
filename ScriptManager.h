@@ -14,7 +14,7 @@ class ScriptManager
  public:
 
 	typedef struct  {
-		EffectManager::Effect effect;
+		EffectManager::EffectName effect;
 		uint32_t wait_ms;
 		uint16_t wait_sec;
 		uint16_t wait_min;
@@ -29,7 +29,7 @@ class ScriptManager
 		  script_length_(0), 
 		  script_index_(0), 
 		  effect_switch_(false), 
-		  effect_(0), 
+		  effect_(EffectManager::EFFECT_OFF), 
 		  eeprom_save_flag_(save_effect),
 		  counter_ms_(),
 		  counter_sec_(),
@@ -69,7 +69,7 @@ class ScriptManager
 
 	bool effect_switch_;
 
-	EffectManager::Effect effect_;
+	EffectManager::EffectName effect_;
 
 	bool eeprom_save_flag_;
 
