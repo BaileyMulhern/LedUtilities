@@ -3,6 +3,9 @@
 
 #include <Arduino.h>
 #include <FastLED.h>
+
+#include "Effect.h"
+#include "SolidEffect.h"
 #include "Counter.h"
 
 class EffectManager 
@@ -58,38 +61,37 @@ class EffectManager
     } OverflowCode;
     
     EffectManager(CRGB* leds, uint8_t num_leds) 
-        : leds_(leds, num_leds), 
+        : leds_(leds), 
 		  NUM_LEDS_(num_leds), 
-		  effect_(EFFECT_OFF), 
+		  effect_name_(EFFECT_OFF), 
+		  effect_(&solid_effect_),
 		  counter_(),
           rainbow_counter_()
     {
     };
 	
-	void runEffect(EffectName effect);
+	void runEffect(EffectName effect_name);
 
 
 
  private:
 
-    CRGBSet leds_;
+    CRGB* leds_;
     
     const uint8_t NUM_LEDS_;
 
-	EffectName effect_;
+	EffectName effect_name_;
 
-	//effectFunc_t effect_func_;
+	Effect* effect_;
+
+	SolidEffect solid_effect_;
 
     Counter counter_;
 
     Counter rainbow_counter_;
 
-    CRGB color_;
-
     static const uint16_t COUNT_MAX_RAINBOW_ = 255;
     
-    void initCounterSolid();
-
     void initCounterRainbowSlow();
 
     void initCounterRainbowFast();
@@ -97,8 +99,6 @@ class EffectManager
     void initCounterTheatreChaseSlow();
 
     void initCounterTheatreChaseFast();
-
-    void ledsFillSolid(CRGB color);
 	
 	void ledsFillSolidBlock(CRGB color, int start, int length, DirectionCode dir = FORWARD, OverflowCode overflow = WRAP);  
 

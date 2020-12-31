@@ -1,11 +1,7 @@
 #include "SolidEffect.h"
 
-SolidEffect::SolidEffect()
-{
-
-}
 
 void SolidEffect::run(CRGB* leds, uint8_t num_leds)
 {
-
+	fillSolid(leds, num_leds, color_);
 }

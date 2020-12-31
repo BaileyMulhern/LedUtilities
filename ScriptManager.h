@@ -2,11 +2,13 @@
 #define SCRIPT_MANAGER_H
 
 #include <Arduino.h>
-#include <FastLED.h>
 #include <EEPROM.h>
-#include "EffectManager.h"
-#include "Counter.h"
+#include <FastLED.h>
 
+#include "EffectManager.h"
+#include "Effect.h"
+#include "SolidEffect.h"
+#include "Counter.h"
 
 class ScriptManager 
 {
