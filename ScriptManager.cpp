@@ -1,9 +1,10 @@
 #include "ScriptManager.h"
+#include "Arduino.h"
 
-void ScriptManager::loadScript(ScriptElement *script)
+void ScriptManager::loadScript(ScriptElement *script, uint8_t length)
 {
 	script_queue_ = script;
-	script_length_ = sizeof(script) / sizeof(ScriptElement);
+	script_length_ = length;
 	script_index_ = 0;
 	effect_switch_ = true;
 }

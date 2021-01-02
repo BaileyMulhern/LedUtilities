@@ -6,6 +6,7 @@
 
 #include "Effect.h"
 #include "SolidEffect.h"
+#include "MarqueeEffect.h"
 #include "Counter.h"
 
 class EffectManager 
@@ -46,6 +47,7 @@ class EffectManager
         EFFECT_THEATRE_CHASE_RAINBOW_FADE_FAST,
         EFFECT_THEATRE_CHASE_RAINBOW_EVEN_SLOW,
         EFFECT_THEATRE_CHASE_RAINBOW_EVEN_FAST,
+        EFFECT_TEST,
         EFFECT_NUM_EFFECTS,
     } EffectName;
 
@@ -85,6 +87,8 @@ class EffectManager
 	Effect* effect_;
 
 	SolidEffect solid_effect_;
+
+    MarqueeEffect marquee_effect_;
 
     Counter counter_;
 

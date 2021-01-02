@@ -18,18 +18,18 @@ class Counter
  public:
 
 	static const uint8_t  WAIT_NONE =					0;
-	static const uint64_t WAIT_ONE_MILLISECOND = 		1;
-	static const uint64_t WAIT_ONE_TWENTIETH_SECOND = 	50;
-	static const uint64_t WAIT_ONE_TENTH_SECOND = 		100;
-	static const uint64_t WAIT_QUARTER_SECOND = 		250;
-	static const uint64_t WAIT_HALF_SECOND = 			500;
-	static const uint64_t WAIT_THREE_QUARTER_SECOND = 	750;
-	static const uint64_t WAIT_ONE_SECOND = 			1000;
-	static const uint64_t WAIT_TEN_SECONDS =			10000;
-	static const uint64_t WAIT_THIRTY_SECONDS =			30000;
-	static const uint64_t WAIT_ONE_MINUTE = 			60000;
-	static const uint64_t WAIT_FIVE_MINUTES =			300000;
-	static const uint64_t WAIT_ONE_HOUR = 				3600000;
+	static const uint8_t  WAIT_ONE_MILLISECOND = 		1;
+	static const uint8_t  WAIT_ONE_TWENTIETH_SECOND = 	50;
+	static const uint8_t  WAIT_ONE_TENTH_SECOND = 		100;
+	static const uint8_t  WAIT_QUARTER_SECOND = 		250;
+	static const uint16_t WAIT_HALF_SECOND = 			500;
+	static const uint16_t WAIT_THREE_QUARTER_SECOND = 	750;
+	static const uint16_t WAIT_ONE_SECOND = 			1000;
+	static const uint16_t WAIT_TEN_SECONDS =			10000;
+	static const uint16_t WAIT_THIRTY_SECONDS =			30000;
+	static const uint16_t WAIT_ONE_MINUTE = 			60000;
+	static const uint32_t WAIT_FIVE_MINUTES =			300000;
+	static const uint32_t WAIT_ONE_HOUR = 				3600000;
 
 	
 	/**
@@ -51,7 +51,7 @@ class Counter
 	 * Sets the counter to the default counter with the given delay time
 	 * @param wait delay in milliseconds between each increment/decrement of the counter
 	 */
-	Counter(uint64_t wait) 
+	Counter(uint32_t wait) 
 		: count_(0), 
 		  step_(1), 
 		  max_(1), 
@@ -69,7 +69,7 @@ class Counter
 	 * @param overflow	value taken by the counter once it reaches max and overflows
 	 * @param wait 		delay in milliseconds between each increment/decrement of the counter
 	 */
-	Counter(uint32_t count, uint32_t step, uint32_t max, uint32_t overflow, uint64_t wait)
+	Counter(uint16_t count, uint16_t step, uint16_t max, uint16_t overflow, uint32_t wait)
 		: count_(count), 
 		  step_(step), 
 		  max_(max), 
@@ -89,17 +89,17 @@ class Counter
 	 * Get method for count_
 	 * @return 
 	 */
-	uint32_t getCount() { return count_; };
+	uint16_t getCount() { return count_; };
 	
-	uint32_t getStep() { return step_; };
+	uint16_t getStep() { return step_; };
 	
-	uint32_t getMax() { return max_; };
+	uint16_t getMax() { return max_; };
 	
-	uint32_t getOverflow() { return overflow_; };
+	uint16_t getOverflow() { return overflow_; };
 
-	uint64_t getWait() { return wait_; };
+	uint32_t getWait() { return wait_; };
 
-	void setWait(uint64_t wait) { wait_ = wait; };
+	void setWait(uint32_t wait) { wait_ = wait; };
 	
 	void reset();
 	
@@ -107,17 +107,17 @@ class Counter
   	
  private:
 	
-	uint32_t count_;
+	uint16_t count_;
 	
-	uint32_t step_;
+	uint16_t step_;
 	
-	uint32_t max_;
+	uint16_t max_;
 	
-	uint32_t overflow_;
+	uint16_t overflow_;
 
-	uint64_t wait_;
+	uint32_t wait_;
 	
-	uint64_t last_ms_;
+	uint32_t last_ms_;
 
 };
 

@@ -1,5 +1,6 @@
 #include "Counter.h"
 
+
 void Counter::reset()
 {
 	count_ = 0;

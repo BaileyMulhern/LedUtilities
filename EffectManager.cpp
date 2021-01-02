@@ -48,6 +48,11 @@ void EffectManager::runEffect(EffectName effect_name)
 				solid_effect_ = SolidEffect(CRGB::Yellow);
 				effect_ = &solid_effect_;
 				break;
+
+            case EFFECT_TEST:
+                marquee_effect_ = MarqueeEffect(CRGB::Blue , 3, 5, 100, true);
+                effect_ = &marquee_effect_;
+                break;
 			/*
 			case EFFECT_RAINBOW_FILL_SLOW:
 				if(effect_switch)

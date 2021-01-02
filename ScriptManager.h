@@ -42,7 +42,7 @@ class ScriptManager
 	{
 	};
 
-	void loadScript(ScriptElement *script);
+	void loadScript(ScriptElement *script, uint8_t length);
 	
 	void runScript();
 	
