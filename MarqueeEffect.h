@@ -13,31 +13,30 @@
  */
 class MarqueeEffect : public Effect
 {
-
   public:
 
 	MarqueeEffect()
-    : color_(CRGB::Black),
-      num_on_(0),
-      num_off_(0), 
-      smooth_(false),
-      scroll_counter_(),
-      Effect()
+		: color_(CRGB::Black),
+		  num_on_(0),
+		  num_off_(0), 
+		  smooth_(false),
+		  scroll_counter_(),
+		  Effect()
     {
     };
 
-    MarqueeEffect(CRGB color, uint8_t num_on, uint8_t num_off, uint32_t wait, bool smooth = false)
-	: color_(color), 
-      num_on_(num_on),
-      num_off_(num_off),
-      smooth_(smooth),
-      scroll_counter_(0, 1, num_on + num_off, 0, wait),
-	  Effect()
+    MarqueeEffect(CRGB color, uint8_t num_on, uint8_t num_off, uint32_t wait, 
+					bool smooth = false, DrawMode draw_mode = CLEAR)
+		: color_(color), 
+		  num_on_(num_on),
+		  num_off_(num_off),
+		  smooth_(smooth),
+		  scroll_counter_(0, 1, num_on + num_off, 0, wait),
+		  Effect()
     {
-
     };
 
-    void run(CRGB* leds, uint8_t num_leds);
+    void draw(CRGB* leds, uint8_t num_leds);
 
   private:
 
@@ -46,7 +45,6 @@ class MarqueeEffect : public Effect
     uint8_t num_off_;
     bool smooth_;
     Counter scroll_counter_;
-
 
 };
 

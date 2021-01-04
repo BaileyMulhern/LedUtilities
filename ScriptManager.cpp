@@ -13,7 +13,7 @@ void ScriptManager::runScript()
 {
 	if(effect_switch_)
 	{
-		effect_ = script_queue_[script_index_].effect;
+		preset_ = script_queue_[script_index_].preset;
 
 		counter_ms_  = Counter( script_queue_[script_index_].wait_ms);
 		counter_sec_ = Counter( (uint64_t)script_queue_[script_index_].wait_sec * Counter::WAIT_ONE_SECOND);
@@ -46,7 +46,7 @@ void ScriptManager::runScript()
 		}
 	}
 
-	effect_manager_.runEffect(effect_);	
+	effect_manager_.runEffect(preset_);	
 }
 
 void ScriptManager::incrementScript()

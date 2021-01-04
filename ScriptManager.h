@@ -12,11 +12,10 @@
 
 class ScriptManager 
 {
-
- public:
+  public:
 
 	typedef struct  {
-		EffectManager::EffectName effect;
+		EffectManager::EffectPreset preset;
 		uint32_t wait_ms;
 		uint16_t wait_sec;
 		uint16_t wait_min;
@@ -31,7 +30,7 @@ class ScriptManager
 		  script_length_(0), 
 		  script_index_(0), 
 		  effect_switch_(false), 
-		  effect_(EffectManager::EFFECT_OFF), 
+		  preset_(EffectManager::OFF), 
 		  eeprom_save_flag_(save_effect),
 		  counter_ms_(),
 		  counter_sec_(),
@@ -52,8 +51,7 @@ class ScriptManager
 
 	void loadEffectEeprom();
 
-
- private:
+  private:
 
 	typedef enum 
 	{
@@ -71,7 +69,7 @@ class ScriptManager
 
 	bool effect_switch_;
 
-	EffectManager::EffectName effect_;
+	EffectManager::EffectPreset preset_;
 
 	bool eeprom_save_flag_;
 

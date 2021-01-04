@@ -12,6 +12,9 @@
  */
 class SolidEffect : public Effect
 {
+  private:
+
+	CRGB color_;
 
   public:
 
@@ -27,11 +30,7 @@ class SolidEffect : public Effect
 	{
 	};
 
-    void run(CRGB* leds, uint8_t num_leds);
-
-  private:
-
-	CRGB color_;
+    void draw(CRGB* leds, uint8_t num_leds);
 	
 };
 

@@ -20,7 +20,7 @@ bool Counter::update()
 		count_ += step_;
 
 		// Set counter back to the overflow_ value
-		if (count_ >= max_)
+		if (count_ > max_)
 		{
 			count_ = overflow_;     
 			overflow_flag = true;

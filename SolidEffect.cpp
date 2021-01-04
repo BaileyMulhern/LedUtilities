@@ -1,7 +1,21 @@
 #include "SolidEffect.h"
 
 
-void SolidEffect::run(CRGB* leds, uint8_t num_leds)
+void SolidEffect::draw(CRGB* leds, uint8_t num_leds)
 {
-	fillSolid(leds, num_leds, color_);
+	switch (draw_mode_)
+	{
+		case CLEAR:
+		case OVERWRITE:
+			fillSolid(leds, num_leds, color_);
+			break;
+
+		case ADDITIVE:
+			addSolid(leds, num_leds, color_);
+			break;
+		
+		default:
+			break;
+	}
+	
 }
