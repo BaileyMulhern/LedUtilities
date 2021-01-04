@@ -31,7 +31,7 @@ class MarqueeEffect : public Effect
 		  num_on_(num_on),
 		  num_off_(num_off),
 		  smooth_(smooth),
-		  scroll_counter_(0, 1, num_on + num_off, 0, wait),
+		  scroll_counter_(0, 1, num_on + num_off - 1, 0, wait),
 		  Effect()
     {
     };

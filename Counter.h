@@ -28,9 +28,6 @@ class Counter
 	static const uint16_t WAIT_TEN_SECONDS =			10000;
 	static const uint16_t WAIT_THIRTY_SECONDS =			30000;
 	static const uint16_t WAIT_ONE_MINUTE = 			60000;
-	static const uint32_t WAIT_FIVE_MINUTES =			300000;
-	static const uint32_t WAIT_ONE_HOUR = 				3600000;
-
 	
 	/**
 	 * Default Counter Constructor

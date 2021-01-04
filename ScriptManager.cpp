@@ -14,6 +14,8 @@ void ScriptManager::runScript()
 	if(effect_switch_)
 	{
 		preset_ = script_queue_[script_index_].preset;
+        color_ = script_queue_[script_index_].color;
+        speed_ = script_queue_[script_index_].effect_speed;
 
 		counter_ms_  = Counter( script_queue_[script_index_].wait_ms);
 		counter_sec_ = Counter( (uint64_t)script_queue_[script_index_].wait_sec * Counter::WAIT_ONE_SECOND);
@@ -46,6 +48,8 @@ void ScriptManager::runScript()
 		}
 	}
 
+    effect_manager_.setEffectColor(color_);
+    effect_manager_.setEffectSpeed(speed_);
 	effect_manager_.runEffect(preset_);	
 }
 

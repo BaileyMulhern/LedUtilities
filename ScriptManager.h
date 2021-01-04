@@ -16,6 +16,8 @@ class ScriptManager
 
 	typedef struct  {
 		EffectManager::EffectPreset preset;
+        CRGB color;
+        uint16_t effect_speed;
 		uint32_t wait_ms;
 		uint16_t wait_sec;
 		uint16_t wait_min;
@@ -30,7 +32,9 @@ class ScriptManager
 		  script_length_(0), 
 		  script_index_(0), 
 		  effect_switch_(false), 
-		  preset_(EffectManager::OFF), 
+		  preset_(EffectManager::NONE), 
+          color_(CRGB::Black),
+          speed_(EffectManager::MEDIUM),
 		  eeprom_save_flag_(save_effect),
 		  counter_ms_(),
 		  counter_sec_(),
@@ -70,6 +74,10 @@ class ScriptManager
 	bool effect_switch_;
 
 	EffectManager::EffectPreset preset_;
+
+    CRGB color_;
+
+    uint16_t speed_;
 
 	bool eeprom_save_flag_;
 

@@ -11,172 +11,62 @@ void EffectManager::runEffect(EffectPreset preset)
 
 		switch(preset_)
 		{
-			case OFF:
+			case NONE:
 				solid_effect_ = SolidEffect();
 				effect_ = &solid_effect_;
 				break;
 			
-			case SOLID_RED:
-				solid_effect_ = SolidEffect(CRGB::Red);
+			case SOLID:
+				solid_effect_ = SolidEffect(color_);
 				effect_ = &solid_effect_;
 				break;
 
-			case SOLID_GREEN:
-				solid_effect_ = SolidEffect(CRGB::Green);
-				effect_ = &solid_effect_;
-				break;
-			
-			case SOLID_BLUE:
-				solid_effect_ = SolidEffect(CRGB::Blue);
-				effect_ = &solid_effect_;
-				break;
-
-			case SOLID_CYAN:
-				solid_effect_ = SolidEffect(CRGB::Cyan);
-				effect_ = &solid_effect_;
-				break;
-
-			case SOLID_MAGENTA:
-				solid_effect_ = SolidEffect(CRGB::Magenta);
-				effect_ = &solid_effect_;
-				break;
-			
-			case SOLID_YELLOW:
-				solid_effect_ = SolidEffect(CRGB::Yellow);
-				effect_ = &solid_effect_;
-				break;
-
-			case RAINBOW_FILL_SLOW:
-				rainbow_effect_ = RainbowEffect(1, 0, Counter::WAIT_QUARTER_SECOND);
+			case RAINBOW_FILL:
+				rainbow_effect_ = RainbowEffect(1, 0, speed_);
 				effect_ = &rainbow_effect_;
 				break;
 			
-			case RAINBOW_FILL_FAST:
-				rainbow_effect_ = RainbowEffect(1, 0, Counter::WAIT_ONE_TWENTIETH_SECOND);
-				effect_ = &rainbow_effect_;
-				break;
-			
-			case RAINBOW_FADE_SLOW:
+			case RAINBOW_FADE:
 				//Fill rainbow with a delta of 5 to make it fade throughout
-				rainbow_effect_ = RainbowEffect(1, 5, SLOW);
+				rainbow_effect_ = RainbowEffect(1, 5, speed_);
 				effect_ = &rainbow_effect_;
 				break;
 			
-			case RAINBOW_FADE_FAST:
-				//Fill rainbow with a delta of 5 to make it fade throughout
-				rainbow_effect_ = RainbowEffect(1, 5, FAST);
-				effect_ = &rainbow_effect_;
-				break;
-			
-			case RAINBOW_EVEN_SLOW:
+			case RAINBOW_EVEN:
 			{
 				//Fill rainbow with a delta that makes the rainbow evenly spread throughout
 				uint8_t delta = (NUM_LEDS_ >= RainbowEffect::COUNT_MAX) 
 									? 1
 									: RainbowEffect::COUNT_MAX / NUM_LEDS_;
-				rainbow_effect_ = RainbowEffect(1, delta, SLOW);
+				rainbow_effect_ = RainbowEffect(1, delta, speed_);
 				effect_ = &rainbow_effect_;
 				break;
 			}
 
-			case RAINBOW_EVEN_FAST:
+			case THEATRE_CHASE:
 			{
-				//Fill rainbow with a delta that makes the rainbow evenly spread throughout
-				uint8_t delta = (NUM_LEDS_ >= RainbowEffect::COUNT_MAX) 
-									? 1
-									: RainbowEffect::COUNT_MAX / NUM_LEDS_;
-				rainbow_effect_ = RainbowEffect(1, delta, FAST);
-				effect_ = &rainbow_effect_;
-				break;
-			}
-
-			case THEATRE_CHASE_RED_SLOW:
-			{		
-				marquee_effect_ = MarqueeEffect(CRGB::Red, 1, 2, SLOW);
+				marquee_effect_ = MarqueeEffect(color_, 1, 2, speed_);
 				effect_ = &marquee_effect_;
 				break;
 			}
 
-			case THEATRE_CHASE_RED_FAST:
-			{
-				marquee_effect_ = MarqueeEffect(CRGB::Red, 1, 2, FAST);
-				effect_ = &marquee_effect_;
-				break;
-			}
+            default:
+                break;
 
-			case THEATRE_CHASE_GREEN_SLOW:
-			{
-				marquee_effect_ = MarqueeEffect(CRGB::Green, 1, 2, SLOW);
-				effect_ = &marquee_effect_;
-				break;
-			}
-
-			case THEATRE_CHASE_GREEN_FAST:
-			{
-				marquee_effect_ = MarqueeEffect(CRGB::Green, 1, 2, FAST);
-				effect_ = &marquee_effect_;
-				break;
-			}
-
-			case THEATRE_CHASE_BLUE_SLOW:
-			{
-				marquee_effect_ = MarqueeEffect(CRGB::Blue, 1, 2, SLOW);
-				effect_ = &marquee_effect_;
-				break;
-			}
-
-			case THEATRE_CHASE_BLUE_FAST:
-			{
-				marquee_effect_ = MarqueeEffect(CRGB::Blue, 1, 2, FAST);
-				effect_ = &marquee_effect_;
-				break;
-			}
-
-			case THEATRE_CHASE_CYAN_SLOW:
-			{
-				marquee_effect_ = MarqueeEffect(CRGB::Cyan, 1, 2, SLOW);
-				effect_ = &marquee_effect_;
-				break;
-			}
-
-			case THEATRE_CHASE_CYAN_FAST:
-			{
-				marquee_effect_ = MarqueeEffect(CRGB::Cyan, 1, 2, FAST);
-				effect_ = &marquee_effect_;
-				break;
-			}
-
-			case THEATRE_CHASE_MAGENTA_SLOW:
-			{
-				marquee_effect_ = MarqueeEffect(CRGB::Magenta, 1, 2, SLOW);
-				effect_ = &marquee_effect_;
-				break;
-			}
-
-			case THEATRE_CHASE_MAGENTA_FAST:
-			{
-				marquee_effect_ = MarqueeEffect(CRGB::Magenta, 1, 2, FAST);
-				effect_ = &marquee_effect_;
-				break;
-			}
-
-			case THEATRE_CHASE_YELLOW_SLOW:
-			{
-				marquee_effect_ = MarqueeEffect(CRGB::Yellow, 1, 2, SLOW);
-				effect_ = &marquee_effect_;
-				break;
-			}
-
-			case THEATRE_CHASE_YELLOW_FAST:
-			{
-				marquee_effect_ = MarqueeEffect(CRGB::Yellow, 1, 2, FAST);
-				effect_ = &marquee_effect_;
-				break;
-			}
 		}
     }
 
     effect_->draw(leds_, NUM_LEDS_);
+}
+
+void EffectManager::setEffectSpeed(uint16_t ms)
+{
+    speed_ = ms;
+}
+
+void EffectManager::setEffectColor(CRGB color)
+{
+    color_ = color;
 }
 
 /*

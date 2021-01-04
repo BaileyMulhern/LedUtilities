@@ -16,31 +16,12 @@ class EffectManager
 
     typedef enum
     {
-        OFF = 0,
-        SOLID_RED,
-        SOLID_GREEN,
-        SOLID_BLUE,
-        SOLID_CYAN,
-        SOLID_MAGENTA,
-        SOLID_YELLOW,
-        RAINBOW_FILL_SLOW,
-        RAINBOW_FILL_FAST,
-        RAINBOW_FADE_SLOW,
-        RAINBOW_FADE_FAST,
-        RAINBOW_EVEN_SLOW,
-        RAINBOW_EVEN_FAST, 
-        THEATRE_CHASE_RED_SLOW,
-        THEATRE_CHASE_RED_FAST,
-        THEATRE_CHASE_GREEN_SLOW,
-        THEATRE_CHASE_GREEN_FAST,
-        THEATRE_CHASE_BLUE_SLOW,
-        THEATRE_CHASE_BLUE_FAST,
-        THEATRE_CHASE_CYAN_SLOW,
-        THEATRE_CHASE_CYAN_FAST,
-        THEATRE_CHASE_MAGENTA_SLOW,
-        THEATRE_CHASE_MAGENTA_FAST,
-        THEATRE_CHASE_YELLOW_SLOW,
-        THEATRE_CHASE_YELLOW_FAST,
+        NONE = 0,
+        SOLID,
+        RAINBOW_FILL,
+        RAINBOW_FADE,
+        RAINBOW_EVEN, 
+        THEATRE_CHASE,
         NUM_PRESETS,
     } EffectPreset;
 
@@ -61,15 +42,22 @@ class EffectManager
 	static const uint16_t SLOW = 		Counter::WAIT_HALF_SECOND;
 	static const uint16_t VERY_SLOW = 	Counter::WAIT_ONE_SECOND;
     
-    EffectManager(CRGB* leds, uint8_t num_leds) 
+    EffectManager(CRGB* leds, uint8_t num_leds, CRGB color = CRGB::Red, 
+                    uint16_t speed = MEDIUM, EffectPreset preset = NONE) 
         : leds_(leds), 
 		  NUM_LEDS_(num_leds), 
-		  preset_(OFF), 
+		  color_(color),
+          speed_(speed),
+          preset_(preset), 
 		  effect_(&solid_effect_)
     {
     };
 	
 	void runEffect(EffectPreset preset);
+
+    void setEffectSpeed(uint16_t ms);
+
+    void setEffectColor(CRGB color);
 
   private:
 
@@ -77,7 +65,11 @@ class EffectManager
     
     const uint8_t NUM_LEDS_;
 
-	EffectPreset preset_;
+	CRGB color_;
+    
+    uint16_t speed_;
+    
+    EffectPreset preset_;
 
 	Effect* effect_;
 
