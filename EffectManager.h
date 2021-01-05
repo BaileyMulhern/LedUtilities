@@ -65,11 +65,13 @@ class EffectManager
     
     const uint8_t NUM_LEDS_;
 
+	EffectPreset preset_;
+
 	CRGB color_;
     
     uint16_t speed_;
     
-    EffectPreset preset_;
+    bool effect_switch_;
 
 	Effect* effect_;
 

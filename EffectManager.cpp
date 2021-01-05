@@ -3,10 +3,11 @@
 void EffectManager::runEffect(EffectPreset preset)
 {
     //If the new effect is different from the current effect, set flag
-    bool effect_switch = !(preset_ == preset);
+    effect_switch_ |= !(preset_ == preset);
 
-    if(effect_switch)
+    if(effect_switch_)
     {
+		effect_switch_ = false;
         preset_ = preset;
 
 		switch(preset_)
@@ -49,6 +50,7 @@ void EffectManager::runEffect(EffectPreset preset)
 				effect_ = &marquee_effect_;
 				break;
 			}
+		
 
             default:
                 break;
@@ -62,11 +64,13 @@ void EffectManager::runEffect(EffectPreset preset)
 void EffectManager::setEffectSpeed(uint16_t ms)
 {
     speed_ = ms;
+	effect_switch_ |= !(speed_ == ms);
 }
 
 void EffectManager::setEffectColor(CRGB color)
 {
     color_ = color;
+	effect_switch_ |= !(color_ == color);
 }
 
 /*
