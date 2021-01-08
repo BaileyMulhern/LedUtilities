@@ -22,6 +22,8 @@ class EffectManager
         RAINBOW_FADE,
         RAINBOW_EVEN, 
         THEATRE_CHASE,
+        THEATRE_CHASE_2,
+        THEATRE_CHASE_3,
         NUM_PRESETS,
     } EffectPreset;
 

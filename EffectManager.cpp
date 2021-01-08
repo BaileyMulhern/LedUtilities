@@ -50,6 +50,21 @@ void EffectManager::runEffect(EffectPreset preset)
 				break;
 			}
 
+            case THEATRE_CHASE_2:
+			{
+				marquee_effect_ = MarqueeEffect(color_, 3, 9, speed_);
+				effect_ = &marquee_effect_;
+				break;
+			}
+
+            case THEATRE_CHASE_3:
+			{
+                uint8_t half = NUM_LEDS_ / 3;
+				marquee_effect_ = MarqueeEffect(color_, half, half + half, speed_);
+				effect_ = &marquee_effect_;
+				break;
+			}
+
             default:
                 break;
 
