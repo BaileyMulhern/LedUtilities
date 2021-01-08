@@ -24,6 +24,7 @@ class EffectManager
         THEATRE_CHASE,
         THEATRE_CHASE_2,
         THEATRE_CHASE_3,
+        SMOOTH_CHASE,
         NUM_PRESETS,
     } EffectPreset;
 
@@ -51,7 +52,8 @@ class EffectManager
 		  color_(color),
           speed_(speed),
           preset_(preset), 
-		  effect_(&solid_effect_)
+		  effect_(&solid_effect_),
+          effect_switch_(false)
     {
     };
 	

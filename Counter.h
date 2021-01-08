@@ -51,7 +51,7 @@ class Counter
 	Counter(uint32_t wait) 
 		: count_(0), 
 		  step_(1), 
-		  max_(1), 
+		  max_(0), 
 		  overflow_(0), 
 		  wait_(wait),
 		  last_ms_(millis()) {

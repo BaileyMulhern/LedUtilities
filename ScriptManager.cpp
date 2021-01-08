@@ -1,5 +1,5 @@
 #include "ScriptManager.h"
-#include "Arduino.h"
+#include <Arduino.h>
 
 void ScriptManager::loadScript(ScriptElement *script, uint8_t length)
 {
@@ -20,6 +20,13 @@ void ScriptManager::runScript()
 		counter_ms_  = Counter( script_queue_[script_index_].wait_ms);
 		counter_sec_ = Counter( (uint64_t)script_queue_[script_index_].wait_sec * Counter::WAIT_ONE_SECOND);
 		counter_min_ = Counter( (uint64_t)script_queue_[script_index_].wait_min * Counter::WAIT_ONE_MINUTE);
+
+        // Serial.println((long)script_queue_[script_index_].wait_sec);
+        // Serial.println(Counter::WAIT_ONE_SECOND);
+        // Serial.println(counter_sec_.getWait());
+
+        effect_manager_.setEffectColor(color_);
+        effect_manager_.setEffectSpeed(speed_);
 
 		ms_elapsed_ = false;
 		sec_elapsed_ = false;
@@ -48,8 +55,9 @@ void ScriptManager::runScript()
 		}
 	}
 
-    effect_manager_.setEffectColor(color_);
-    effect_manager_.setEffectSpeed(speed_);
+    // Serial.println(millis());
+    // Serial.println(counter_sec_.getCount());
+
 	effect_manager_.runEffect(preset_);	
 }
 

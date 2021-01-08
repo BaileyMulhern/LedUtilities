@@ -51,10 +51,9 @@ void EffectManager::runEffect(EffectPreset preset)
 				break;
 			}
 		
-
             case THEATRE_CHASE_2:
 			{
-				marquee_effect_ = MarqueeEffect(color_, 3, 9, speed_);
+				marquee_effect_ = MarqueeEffect(color_, 2, 8, speed_);
 				effect_ = &marquee_effect_;
 				break;
 			}
@@ -67,6 +66,13 @@ void EffectManager::runEffect(EffectPreset preset)
 				break;
 			}
 
+            case SMOOTH_CHASE:
+            {
+                marquee_effect_ = MarqueeEffect(color_, 2, 8, speed_, true);
+                effect_ = &marquee_effect_;
+                break;
+            }
+
             default:
                 break;
 
@@ -78,14 +84,14 @@ void EffectManager::runEffect(EffectPreset preset)
 
 void EffectManager::setEffectSpeed(uint16_t ms)
 {
+    effect_switch_ |= !(speed_ == ms);
     speed_ = ms;
-	effect_switch_ |= !(speed_ == ms);
 }
 
 void EffectManager::setEffectColor(CRGB color)
 {
-    color_ = color;
-	effect_switch_ |= !(color_ == color);
+    effect_switch_ |= !(color_ == color);
+    color_ = color;	
 }
 
 /*
