@@ -12,13 +12,6 @@ bool Counter::update()
     bool overflow_flag = false;
 	uint64_t ms = millis(); 
 
-    if(wait_ == 5000 || wait_ == 5)
-    {
-        Serial.println(wait_);
-        Serial.println((long)ms);
-        Serial.println(last_ms_);
-    }
-
 	// If the wait time has elapsed
 	if (ms - last_ms_ >= wait_)
 	{

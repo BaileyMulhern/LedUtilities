@@ -46,32 +46,71 @@ void EffectManager::runEffect(EffectPreset preset)
 
 			case THEATRE_CHASE:
 			{
-				marquee_effect_ = MarqueeEffect(color_, 1, 2, speed_);
+				marquee_effect_ = MarqueeEffect(color_, 1, 3, speed_);
 				effect_ = &marquee_effect_;
 				break;
 			}
 		
             case THEATRE_CHASE_2:
 			{
-				marquee_effect_ = MarqueeEffect(color_, 2, 8, speed_);
+				marquee_effect_ = MarqueeEffect(color_, 2, 10, speed_);
 				effect_ = &marquee_effect_;
 				break;
 			}
 
             case THEATRE_CHASE_3:
 			{
-                uint8_t half = NUM_LEDS_ / 3;
-				marquee_effect_ = MarqueeEffect(color_, half, half + half, speed_);
+                uint8_t on = NUM_LEDS_ / 12;
+				marquee_effect_ = MarqueeEffect(color_, on, on * 2, speed_);
+				effect_ = &marquee_effect_;
+				break;
+			}
+
+            case THEATRE_CHASE_4:
+			{
+                uint8_t on = NUM_LEDS_ / 12;
+				marquee_effect_ = MarqueeEffect(color_, on, on * 11, speed_);
 				effect_ = &marquee_effect_;
 				break;
 			}
 
             case SMOOTH_CHASE:
             {
-                marquee_effect_ = MarqueeEffect(color_, 2, 8, speed_, true);
+                marquee_effect_ = MarqueeEffect(color_, 2, 10, speed_, true);
                 effect_ = &marquee_effect_;
                 break;
             }
+
+            case SMOOTH_CHASE_2:
+            {
+                uint8_t on = NUM_LEDS_ / 16;
+                marquee_effect_ = MarqueeEffect(color_, on, on * 3, speed_, true);
+                effect_ = &marquee_effect_;
+                break;
+            }
+
+            case SMOOTH_CHASE_3:
+            {
+                uint8_t on = NUM_LEDS_ / 12;
+                marquee_effect_ = MarqueeEffect(color_, on, on * 2, speed_, true);
+                effect_ = &marquee_effect_;
+                break;
+            }
+
+            case SMOOTH_CHASE_4:
+			{
+                uint8_t on = NUM_LEDS_ / 12;
+				marquee_effect_ = MarqueeEffect(color_, on, on * 11, speed_, true);
+				effect_ = &marquee_effect_;
+				break;
+			}
+
+			case FIRE:
+			{
+				fire_effect_ = FireEffect(NUM_LEDS_);
+				effect_ = &fire_effect_;
+				break;
+			}
 
             default:
                 break;

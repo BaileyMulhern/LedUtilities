@@ -19,6 +19,7 @@ class Counter
 
 	static const uint8_t  WAIT_NONE =					0;
 	static const uint8_t  WAIT_ONE_MILLISECOND = 		1;
+    static const uint8_t  WAIT_ONE_HUNDREDTH_SECOND =   10;
 	static const uint8_t  WAIT_ONE_TWENTIETH_SECOND = 	50;
 	static const uint8_t  WAIT_ONE_TENTH_SECOND = 		100;
 	static const uint8_t  WAIT_QUARTER_SECOND = 		250;

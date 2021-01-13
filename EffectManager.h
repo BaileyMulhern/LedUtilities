@@ -8,6 +8,7 @@
 #include "SolidEffect.h"
 #include "MarqueeEffect.h"
 #include "RainbowEffect.h"
+#include "FireEffect.h"
 #include "Counter.h"
 
 class EffectManager 
@@ -24,7 +25,12 @@ class EffectManager
         THEATRE_CHASE,
         THEATRE_CHASE_2,
         THEATRE_CHASE_3,
+        THEATRE_CHASE_4,
         SMOOTH_CHASE,
+        SMOOTH_CHASE_2,
+        SMOOTH_CHASE_3,
+        SMOOTH_CHASE_4,
+		FIRE,
         NUM_PRESETS,
     } EffectPreset;
 
@@ -39,14 +45,14 @@ class EffectManager
 		CUTOFF,        
     } OverflowCode;
 
-	static const uint16_t VERY_FAST =	Counter::WAIT_ONE_MILLISECOND;
+    static const uint16_t LIGHTSPEED =  Counter::WAIT_ONE_MILLISECOND;
+	static const uint16_t VERY_FAST =	Counter::WAIT_ONE_HUNDREDTH_SECOND;
 	static const uint16_t FAST = 		Counter::WAIT_ONE_TENTH_SECOND;
 	static const uint16_t MEDIUM = 		Counter::WAIT_QUARTER_SECOND;
 	static const uint16_t SLOW = 		Counter::WAIT_HALF_SECOND;
 	static const uint16_t VERY_SLOW = 	Counter::WAIT_ONE_SECOND;
     
-    EffectManager(CRGB* leds, uint8_t num_leds, CRGB color = CRGB::Red, 
-                    uint16_t speed = MEDIUM, EffectPreset preset = NONE) 
+    EffectManager(CRGB* leds, uint8_t num_leds, CRGB color = CRGB::Red, uint16_t speed = MEDIUM, EffectPreset preset = NONE) 
         : leds_(leds), 
 		  NUM_LEDS_(num_leds), 
 		  color_(color),
@@ -84,6 +90,8 @@ class EffectManager
     MarqueeEffect marquee_effect_;
 
 	RainbowEffect rainbow_effect_;
+
+	FireEffect fire_effect_;
 
 };
 
