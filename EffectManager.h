@@ -4,94 +4,50 @@
 #include <Arduino.h>
 #include <FastLED.h>
 
-#include "Effect.h"
-#include "SolidEffect.h"
-#include "MarqueeEffect.h"
-#include "RainbowEffect.h"
-#include "FireEffect.h"
-#include "Counter.h"
+#include "Strip.h"
+#include "Wipe.h"
+#include "Fire.h"
+#include "Confetti.h"
+#include "Fade.h"
+
+typedef enum
+{
+	WIPE,
+	FIRE,
+	CONFETTI,
+	FADE,
+} EffectPreset;
 
 class EffectManager 
 {
+
+  private:
+
+	Strip *strip_;
+	Effect *effect_;
+
+    Wipe wipe_;
+	Fire fire_;
+	Confetti confetti_;
+	Fade fade_;
+
+	bool effect_switch_;
+	EffectPreset effect_preset_;
+
   public:
-
-    typedef enum
-    {
-        NONE = 0,
-        SOLID,
-        RAINBOW_FILL,
-        RAINBOW_FADE,
-        RAINBOW_EVEN, 
-        THEATRE_CHASE,
-        THEATRE_CHASE_2,
-        THEATRE_CHASE_3,
-        THEATRE_CHASE_4,
-        SMOOTH_CHASE,
-        SMOOTH_CHASE_2,
-        SMOOTH_CHASE_3,
-        SMOOTH_CHASE_4,
-		FIRE,
-        NUM_PRESETS,
-    } EffectPreset;
-
-    typedef enum {
-		FORWARD,
-		BACKWARD,
-		MIDDLE_OUT,
-    } DirectionCode;
-
-    typedef enum {
-        WRAP,
-		CUTOFF,        
-    } OverflowCode;
-
-    static const uint16_t LIGHTSPEED =  Counter::WAIT_ONE_MILLISECOND;
-	static const uint16_t VERY_FAST =	Counter::WAIT_ONE_HUNDREDTH_SECOND;
-	static const uint16_t FAST = 		Counter::WAIT_ONE_TENTH_SECOND;
-	static const uint16_t MEDIUM = 		Counter::WAIT_QUARTER_SECOND;
-	static const uint16_t SLOW = 		Counter::WAIT_HALF_SECOND;
-	static const uint16_t VERY_SLOW = 	Counter::WAIT_ONE_SECOND;
     
-    EffectManager(CRGB* leds, uint8_t num_leds, CRGB color = CRGB::Red, uint16_t speed = MEDIUM, EffectPreset preset = NONE) 
-        : leds_(leds), 
-		  NUM_LEDS_(num_leds), 
-		  color_(color),
-          speed_(speed),
-          preset_(preset), 
-		  effect_(&solid_effect_),
-          effect_switch_(false)
+    EffectManager(Strip *strip) 
+        : strip_(strip),
+    	  wipe_(strip, 20),
+		  fire_(strip, 20),
+		  confetti_(strip, 10, 10),
+		  fade_(strip, 50, 0, 3),
+		  effect_switch_(true),
+		  effect_preset_(WIPE)
     {
     };
 	
 	void runEffect(EffectPreset preset);
-
-    void setEffectSpeed(uint16_t ms);
-
-    void setEffectColor(CRGB color);
-
-  private:
-
-    CRGB* leds_;
-    
-    const uint8_t NUM_LEDS_;
-
-	EffectPreset preset_;
-
-	CRGB color_;
-    
-    uint16_t speed_;
-    
-    bool effect_switch_;
-
-	Effect* effect_;
-
-	SolidEffect solid_effect_;
-
-    MarqueeEffect marquee_effect_;
-
-	RainbowEffect rainbow_effect_;
-
-	FireEffect fire_effect_;
 
 };
 

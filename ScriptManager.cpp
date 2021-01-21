@@ -1,5 +1,5 @@
 #include "ScriptManager.h"
-#include <Arduino.h>
+
 
 void ScriptManager::loadScript(ScriptElement *script, uint8_t length)
 {
@@ -14,21 +14,11 @@ void ScriptManager::runScript()
 	if(effect_switch_)
 	{
 		preset_ = script_queue_[script_index_].preset;
-        color_ = script_queue_[script_index_].color;
-        speed_ = script_queue_[script_index_].effect_speed;
-
-		counter_ms_  = Counter( script_queue_[script_index_].wait_ms);
-		counter_sec_ = Counter( (uint64_t)script_queue_[script_index_].wait_sec * Counter::WAIT_ONE_SECOND);
-		counter_min_ = Counter( (uint64_t)script_queue_[script_index_].wait_min * Counter::WAIT_ONE_MINUTE);
-
-        effect_manager_.setEffectColor(color_);
-        effect_manager_.setEffectSpeed(speed_);
-
-		ms_elapsed_ = false;
-		sec_elapsed_ = false;
-		min_elapsed_ = false;
-
 		switch_effect_manually_ = script_queue_[script_index_].switch_effect_manually;
+
+		uint32_t ms;
+
+		timer_.reset(script_queue_[script_index_].ms);
 
 		effect_switch_ = false;
 
@@ -41,11 +31,7 @@ void ScriptManager::runScript()
 	//Otherwise, do not increment the timers and wait for manual effect switch
 	else if(!switch_effect_manually_)
 	{
-		ms_elapsed_  = ms_elapsed_ || counter_ms_.update();
-		sec_elapsed_ = sec_elapsed_ || counter_sec_.update();
-		min_elapsed_ = min_elapsed_ || counter_min_.update();	
-
-		if(min_elapsed_ && sec_elapsed_ && ms_elapsed_)
+		if(timer_.isElapsed())
 		{
 			incrementScript();
 		}
